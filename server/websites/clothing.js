@@ -45,7 +45,7 @@ let ae = async (link) => {
 
   return {
     name: name,
-    image: imgSrc,
+    ImgSrc: imgSrc,
     price: price,
     currency: "$",
   };
@@ -92,7 +92,7 @@ let pullandbear = async (link) => {
 
   return {
     name: name,
-    image: imgSrc,
+    ImgSrc: imgSrc,
     price: price,
     currency: currencyy,
   };
@@ -131,7 +131,7 @@ let lacoste = async (link) => {
 
   return {
     name: name,
-    image: imgSrc,
+    ImgSrc: imgSrc,
     price: price,
     currency: currencyy,
   };
@@ -154,17 +154,19 @@ let zara = async (link) => {
   } catch {}
   try {
     console.log(123);
-    const original_price = await page.$x(
-      "//span[@class='main-price']//*//*/text()"
-    );
+    const original_price = await page.
+    $x("//span[@class='main-price']");
 
     if (original_price.length > 0) {
-      priceString = original_price[0];
+      priceString = await page.evaluate(
+        (element) => element.textContent,
+        original_price[0]
+      );
     }
 
-    const checkIfOld = await page.$x("//div[contains(@class,'price')]");
-
+    const checkIfOld = await page.$x("//span[contains(@class,'sale')]");
     if (checkIfOld.length > 0) {
+      
       const element = checkIfOld[0];
       priceString = await page.evaluate(
         (element) => element.textContent,
@@ -172,6 +174,7 @@ let zara = async (link) => {
       );
     }
     price = currency(priceString).value;
+    
     currencyy = priceString.replace(/[0-9]|\s|\n/g, "").replace(".", "");
   } catch {}
 
@@ -179,7 +182,7 @@ let zara = async (link) => {
 
   return {
     name: name,
-    image: imgSrc,
+    ImgSrc: imgSrc,
     price: price,
     currency: currencyy,
   };
@@ -221,7 +224,7 @@ let hm = async (link) => {
 
   return {
     name: name,
-    image: imgSrc,
+    ImgSrc: imgSrc,
     price: price,
     currency: currency,
   };

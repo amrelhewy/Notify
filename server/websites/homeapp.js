@@ -59,11 +59,12 @@ let btech = async (link) => {
   await page.goto(link, { waitUntil: "networkidle2" });
 
   try {
-    await page.waitForSelector("h1.product__info__titles", { visible: true });
+    await page.waitForSelector("h1.product__info__title", { visible: true });
     name = await page.$eval(
       "h1.product__info__title",
       (prod) => prod.textContent
     );
+    
   } catch {}
   try {
     await page.waitForSelector(".fotorama__loaded--img");
@@ -75,7 +76,8 @@ let btech = async (link) => {
     await page.waitForSelector(".price", { visible: true });
     priceString = await page.$eval(".price", (span) => span.textContent);
     price = currency(priceString).value;
-    currencyy = priceString.replace(/[0-9]|\s|\n/g, "").replace(".", "");
+    
+  
   } catch {}
   try {
     let availabillity = await page.$x("//p[contains(@class,'out-stock')]");
@@ -90,7 +92,7 @@ let btech = async (link) => {
     ImgSrc: imgSrc,
     price: price,
     availabillity: available,
-    currency: currencyy,
+    currency: 'EGP',
   };
 };
 

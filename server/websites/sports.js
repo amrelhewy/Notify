@@ -25,7 +25,7 @@ let nike = async (link) => {
 
   return {
     name: name,
-    image: imgSrc,
+    ImgSrc: imgSrc,
     price: price,
     currency: curr,
   };
@@ -76,7 +76,7 @@ let adidas = async (link) => {
     name: name,
     price: price,
     ImgSrc: ImgSrc,
-    Currency: curr,
+    currency: curr,
   };
 };
 let puma = async (link) => {

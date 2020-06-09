@@ -1,6 +1,6 @@
 const puppeteer=require('puppeteer');
 const currency=require('currency.js');
-let iwatchstores = async (link) => {
+let i = async (link) => {
     let available;
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
@@ -53,7 +53,7 @@ let iwatchstores = async (link) => {
   
       return {
         name: name,
-        image: imgSrc,
+        ImgSrc: imgSrc,
         price: price,
         currency:'LE'
       };
@@ -145,7 +145,7 @@ let gcwatches = (async (linkUrl) => {
   });
 
   module.exports={
-      iwatchstores,
+      i,
       azzamwatches,
       gcwatches
       

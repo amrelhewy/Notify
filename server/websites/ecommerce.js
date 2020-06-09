@@ -3,8 +3,8 @@ const currency = require("currency.js");
 
 async function amazon(link) {
   let product = {
-    Name: null,
-    Price: null,
+    name: null,
+    price: null,
     currency: null,
     ImgSrc: null,
   };
@@ -58,8 +58,8 @@ async function amazon(link) {
   } catch (error) {
     
   }
-  product.Name = name;
-  product.Price = price;
+  product.name = name;
+  product.price = price;
   product.currency = curr;
   product.ImgSrc = imgSrc;
   await browser.close();
@@ -67,7 +67,7 @@ async function amazon(link) {
   return product;
 }
 async function olx(link) {
-  let product = { Name: null, Price: null, Currency: "EGP", ImgSrc: null };
+  let product = { name: null, price: null, currency: "EGP", ImgSrc: null };
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
   page.setDefaultNavigationTimeout(0);
@@ -101,9 +101,9 @@ async function olx(link) {
   } catch (error) {
     
   }
-  product.Name = name;
-  product.Price = price;
-  product.Currency = cur;
+  product.name = name;
+  product.price = price;
+  product.currency = cur;
   product.ImgSrc = imgsrc;
   await browser.close();
   return product;
