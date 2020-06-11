@@ -52,10 +52,12 @@ const router = express.Router();
 router.post("/", async (req, res) => {
   //responsible for popup
   const info = req.body;
+  
   try {
     var link = new URL(info.link);
     var name = psl.parse(link.hostname);
   } catch {
+    
     return res.status(400).send("This is not a valid link");
   }
 
